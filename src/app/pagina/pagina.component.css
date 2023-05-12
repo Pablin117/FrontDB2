@@ -1,14 +1,20 @@
 
 
+body{
+  margin: 0%;
+  background: url("https://st2.depositphotos.com/10376142/43650/v/600/depositphotos_436505976-stock-video-blue-line-server-security-with.jpg");
+  background-size: cover;
+
+}
+
 .principal{
 text-align: center;
 }
 
 .input1 {
-  width: 80%;
-  height: 50px;
-  margin-top: 0%;
-  padding: 50px 100px 100px 100px;
+  width: 88%;
+  height: 1%;
+  padding: 10px 10px 10px 10px;
   border-radius: 5px;
 
 }
@@ -33,6 +39,8 @@ textarea {
 }
 
 button {
+  width: 20%;
+  height: 60px;
   background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
@@ -40,6 +48,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-align: center;
 }
 
 button:hover {
