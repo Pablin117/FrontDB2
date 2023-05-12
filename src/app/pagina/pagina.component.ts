@@ -48,7 +48,8 @@ export class PaginaComponent {
             resultadoElement.innerHTML = response.data
           } else if (typeof response.data === 'object') {
             // La respuesta es un objeto JSON
-            console.log("es select")
+            console.log(response.data)
+
           }
         }
       });
