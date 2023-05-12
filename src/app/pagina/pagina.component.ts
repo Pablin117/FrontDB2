@@ -10,8 +10,8 @@ import { HttpHeaders } from '@angular/common/http';
 export class PaginaComponent {
   title = 'DB2';
 
-  mensaje: String = "prueba";
-  prueba: string = "Ingrese un nombre";
+  mensaje: String = "gestor";
+  gestor: string = "Ingrese un nombre";
   mostrar: boolean =false;
   user: any= {};
   usuarioInvalido: boolean=false;
@@ -64,7 +64,7 @@ export class PaginaComponent {
       })
     }
 
-    return this.http.post<any>("http://localhost:4042/custom-table", this.user, httpOptions).pipe(
+    return this.http.post<any>("http://localhost:4043/custom-table", this.user, httpOptions).pipe(
       catchError(e=>"e")
     )
 

@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { PaginaComponent } from './pagina/pagina.component';
 import {FormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -12,7 +15,10 @@ import {FormsModule} from "@angular/forms";
   ],
     imports: [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule,
+        RouterModule,
+        AppRoutingModule
     ],
   providers: [],
   bootstrap: [AppComponent]

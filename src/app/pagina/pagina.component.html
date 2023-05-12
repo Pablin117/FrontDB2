@@ -7,13 +7,13 @@
 <div class="form-body">
   <form class="login-form" (ngSubmit)="formulariologin()" id="loginForm">
     <div class="container">
-      <h1 style="text-align: center">Supuestamete el titulo</h1>
-      <p>Escribe el query en el recuadro luego da click en el boton "Aceptar"</p>
+      <h1 style="text-align: center">Gestor Online</h1>
+      <p>Escribe la sentencia que desees utilizar, ejemplo "select * from table"</p>
       <textarea id="query"></textarea>
-      <button type="submit" class="aceptar">Aceptar</button>
+      <button type="submit" class="aceptar">Ejecutar</button>
     </div>
     <div class="container2">
-      <div class="caja">Aqui iria el tex</div>
+      <div class="caja" id="resultado">Resultado</div>
     </div>
   </form>
 </div>
