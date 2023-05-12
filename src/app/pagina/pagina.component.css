@@ -1,6 +1,12 @@
 
 
-.container {
+.principal{
+text-align: center;
+}
+
+.input1 {
+  width: 80%;
+  height: 50px;
   margin-top: 0%;
   padding: 50px 100px 100px 100px;
   border-radius: 5px;
@@ -13,6 +19,8 @@
   border-radius: 5px;
 
 }
+
+
 
 textarea {
   width: 100%;
