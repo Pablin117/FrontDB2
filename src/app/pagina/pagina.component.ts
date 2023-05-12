@@ -25,6 +25,7 @@ export class PaginaComponent {
   ngOnInit(): void {
 
  this.makeRequest()
+    this.funcion2();
   }
 
   async makeRequest() {
@@ -59,5 +60,54 @@ export class PaginaComponent {
     }
   }
 
+  async funcion2() {
+    const inputText = document.getElementById('input-text') as HTMLInputElement;
+    const tableBody = document.getElementById('table-body');
+
+    const sendButton = document.getElementById('send-button');
+    if (sendButton != null) {
+      sendButton.addEventListener('click', async () => {
+        const sentencia = inputText.value;
+
+        try {
+          const response = await this.http.post('http://localhost:4043/custom-table', { sentencia }).toPromise();
+          console.log(response);
+
+          if (tableBody) {
+            // Limpiar el contenido de la tabla
+            tableBody.innerHTML = '';
+
+            const info = response && response && response;
+            if (info && Array.isArray(info) && info.length > 0) {
+              // Obtener los campos presentes en los objetos de la respuesta
+              const fields = Object.keys(info[0]);
+
+              // Crear las columnas de la tabla
+              const headerRow = document.createElement('tr');
+              fields.forEach(field => {
+                const headerCell = document.createElement('th');
+                headerCell.textContent = field;
+                headerRow.appendChild(headerCell);
+              });
+              tableBody.appendChild(headerRow);
+
+              // Iterar sobre los objetos del array y agregar filas a la tabla
+              info.forEach(item => {
+                const row = document.createElement('tr');
+                fields.forEach(field => {
+                  const cell = document.createElement('td');
+                  cell.textContent = item[field];
+                  row.appendChild(cell);
+                });
+                tableBody.appendChild(row);
+              });
+            }
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    }
+  }
 
 }
