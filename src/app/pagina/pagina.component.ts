@@ -21,19 +21,24 @@ export class PaginaComponent {
   }
 
   ngOnInit(): void {
-
+this.funcion()
   }
 
   funcion() {
     const inputText = document.getElementById('input-text') as HTMLInputElement;
     const sendButton = document.getElementById('send-button');
+
+
     if (sendButton != null) {
+
       sendButton.addEventListener('click', async () => {
-        const text = inputText ? inputText.value : '';
-        const response = await axios.post('/custom-table', {text});
+
+        const sentencia =  inputText.value
+        const response = await axios.post('http://localhost:4043/custom-table', {sentencia});
         console.log(response.data);
       });
     }
+
   }
 
 
