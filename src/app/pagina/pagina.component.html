@@ -5,17 +5,15 @@
 </head>
 <body>
 <div class="form-body">
-  <form class="login-form" (ngSubmit)="formulariologin()" id="loginForm">
-    <div class="container">
-      <h1 style="text-align: center">Gestor Online</h1>
-      <p>Escribe la sentencia que desees utilizar, ejemplo "select * from table"</p>
-      <textarea id="query"></textarea>
-      <button type="submit" class="aceptar">Ejecutar</button>
-    </div>
-    <div class="container2">
-      <div class="caja" id="resultado">Resultado</div>
-    </div>
-  </form>
+  <div class="container">
+    <h1 style="text-align: center">Gestor Online</h1>
+  </div>
+  <label for="input-text">Escribe la sentencia que desees utilizar, ejemplo "select * from table"</label>
+  <input type="text" id="input-text">
+  <button id="send-button">Ejecutar</button>
+  <div class="container2">
+    <div class="caja" id="resultado">Resultado</div>
+  </div>
 </div>
 
 

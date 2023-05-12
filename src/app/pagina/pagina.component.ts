@@ -1,7 +1,9 @@
-import { Component, OnInit,  } from '@angular/core';
+import {Component, OnInit,} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
+import axios from 'axios';
+
 @Component({
   selector: 'app-pagina',
   templateUrl: './pagina.component.html',
@@ -10,68 +12,31 @@ import { HttpHeaders } from '@angular/common/http';
 export class PaginaComponent {
   title = 'DB2';
 
-  mensaje: String = "gestor";
-  gestor: string = "Ingrese un nombre";
-  mostrar: boolean =false;
-  user: any= {};
-  usuarioInvalido: boolean=false;
+
+  user: any = {};
+  usuarioInvalido: boolean = false;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit(): void {
-    localStorage.clear()
+
   }
 
-  mostrarMensaje(){
-    this.mostrar = !this.mostrar;
-  }
-
-  formulariologin(){
-
-    let formularioValido : any = document.getElementById("loginForm");
-    if(formularioValido.reportValidity()){
-      this.servicioLogin().subscribe(
-        (respuesta:any)=> this.login(respuesta)
-      )
-    }
-  }
-
-  login(res:any){
-    console.log(res)
-    if(res.length == 0){
-      this.usuarioInvalido=true;
-      console.log("paso por null")
-    }
-    else if(res=="e"){
-      alert("No hay comunicación con el servidor!!")
-    }
-    else if(res!=null){
-      localStorage.setItem("user",JSON.stringify(res));
-      location.href="/home";
+  funcion() {
+    const inputText = document.getElementById('input-text') as HTMLInputElement;
+    const sendButton = document.getElementById('send-button');
+    if (sendButton != null) {
+      sendButton.addEventListener('click', async () => {
+        const text = inputText ? inputText.value : '';
+        const response = await axios.post('/custom-table', {text});
+        console.log(response.data);
+      });
     }
   }
 
 
-  crearUsuario(){
-    location.href="/user-creation";
-  }
 
-  servicioLogin(){
-    var httpOptions={
-      headers:new HttpHeaders({
-        'Content-Type':'application/json'
-      })
-    }
 
-    return this.http.post<any>("http://localhost:4043/custom-table", this.user, httpOptions).pipe(
-      catchError(e=>"e")
-    )
-
-  }
-
-  createuser(user:any){
-    localStorage.setItem("user",JSON.stringify(user));
-    location.href="/home";
-  }
 }
