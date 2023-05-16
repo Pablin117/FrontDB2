@@ -128,7 +128,7 @@ export class PaginaComponent {
                 for (const clave in this.objetos) {
                   if (this.objetos.hasOwnProperty(clave)) {
                     const valor = this.objetos[clave];
-                    console.log(`La clave ${clave} tiene el valor ${valor}`);
+                    console.log(`${clave}: ${valor}`);
                   }
                 }
               }
