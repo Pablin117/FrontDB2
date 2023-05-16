@@ -9,11 +9,12 @@ import axios from 'axios';
 })
 export class PaginaComponent {
   title = 'DB2';
-
   public columns: string[] = [];
   public rows: any;
   private json: any;
   private string: any;
+  public objeto: any;
+  public objetos: any;
 
 
   constructor(private http: HttpClient) {
@@ -21,19 +22,11 @@ export class PaginaComponent {
   }
 
   ngOnInit(): void {
-    this.funcionTabla()
+    this.funcionTabla2()
   }
 
-   clearOutput() {
-     const tableBody = document.getElementById('table-body');
-     const resultadoElement = document.getElementById('resultado');
-    if (tableBody != null) {
-      tableBody.innerHTML = '';
-    }
-     if (resultadoElement != null) {
-       resultadoElement.innerHTML = '';
-     }
-  }
+
+
 
   async funcionTabla() {
 
@@ -43,23 +36,22 @@ export class PaginaComponent {
     const resultadoElement = document.getElementById('resultado');
 
 
-    if (sendButton != null) {
+    if (sendButton != null ) {
       sendButton.addEventListener('click', async () => {
         const sentencia = inputText.value;
         try {
           const response = await axios.post('http://localhost:4043/custom-table', {sentencia});
+
+
           if (typeof response.data === 'object') {
             console.log("entro en object")
             // La respuesta es un objeto JSON
+              console.log(tableBody)
 
 
 
-
-            if (tableBody != null ) {
-              // Limpiar el contenido de la tabla
-              tableBody.innerHTML = '';
-              console.log("entro")
-
+            if (tableBody != null) {
+              console.log(tableBody)
               const info = response.data;
               if (info.length > 0) {
                 // Obtener los campos presentes en los objetos de la respuesta
@@ -93,6 +85,7 @@ export class PaginaComponent {
 
             if (resultadoElement != null) {
               resultadoElement.innerHTML = response.data;
+
             }
           }
         } catch (error) {
@@ -103,5 +96,61 @@ export class PaginaComponent {
     }
   }
 
-}
 
+
+  async funcionTabla2() {
+
+    const inputText = document.getElementById('input-text') as HTMLInputElement;
+    const sendButton = document.getElementById('send-button');
+    const tableBody = document.getElementById('table-body');
+    const resultadoElement = document.getElementById('resultado');
+
+
+    if (sendButton != null ) {
+      sendButton.addEventListener('click', async () => {
+        const sentencia = inputText.value;
+        try {
+          const response = await axios.post('http://localhost:4043/custom-table', {sentencia});
+
+
+          if (typeof response.data === 'object') {
+            console.log("entro en object")
+            // La respuesta es un objeto JSON
+            console.log(response.data)
+
+          this.objeto = response.data;
+
+
+            for (const objetoKey in this.objeto) {
+              if (this.objeto.hasOwnProperty(objetoKey)) {
+                console.log(`Iterando sobre el objeto ${objetoKey}:`);
+                this.objetos = this.objeto[objetoKey];
+                for (const clave in this.objetos) {
+                  if (this.objetos.hasOwnProperty(clave)) {
+                    const valor = this.objetos[clave];
+                    console.log(`La clave ${clave} tiene el valor ${valor}`);
+                  }
+                }
+              }
+            }
+
+
+          } else if (typeof response.data === 'string') {
+
+            if (resultadoElement != null) {
+              resultadoElement.innerHTML = response.data;
+
+            }
+          }
+        } catch (error) {
+          console.error(error);
+          alert("Debes ingresar una sentencia");
+        }
+      });
+    }
+  }
+
+
+
+
+}
