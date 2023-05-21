@@ -49,8 +49,8 @@ button:hover {
   color: #BCBDBC;
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 50px;
+  margin-top: auto;
   font-size: 18px;
   background-color: white;
 }

@@ -14,7 +14,7 @@
     <button id="send-button"><H1>Ejecutar</H1></button>
   </div>
   <div class="container2">
-    <div class="caja" id="resultado">Resultado de la sentencia
+    <div class="caja" id="resultado">
       <table>
         <tbody id="table-body">
         </tbody>
@@ -22,12 +22,14 @@
     </div>
 
     <table>
-      <tr *ngFor="let item of objeto">
+      <tr *ngFor="let item of itemsArray">
         <td>
-          {{item.nombre}}
+          {{ item.clave }}: {{ item.valor }}
         </td>
       </tr>
     </table>
+
+
   </div>
 </div>
 </body>

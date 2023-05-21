@@ -11,60 +11,54 @@ export class PaginaComponent {
   title = 'DB2';
   public columns: string[] = [];
   public rows: any;
-  private json: any;
-  private string: any;
   public objeto: any;
   public objetos: any;
-
+  public itemsArray: any;
 
   constructor(private http: HttpClient) {
 
   }
 
   ngOnInit(): void {
-    this.funcionTabla2()
+    this.funcionTabla()
   }
 
-
-
-
-  async funcionTabla() {
-
+  async  funcionTabla() {
     const inputText = document.getElementById('input-text') as HTMLInputElement;
     const sendButton = document.getElementById('send-button');
     const tableBody = document.getElementById('table-body');
     const resultadoElement = document.getElementById('resultado');
 
-
-    if (sendButton != null ) {
+    if (sendButton != null) {
       sendButton.addEventListener('click', async () => {
         const sentencia = inputText.value;
         try {
-          const response = await axios.post('http://localhost:4043/custom-table', {sentencia});
-
-
+          const response = await axios.post('http://localhost:4043/custom-table', { sentencia });
+          const info = response.data;
+          console.log(info)
           if (typeof response.data === 'object') {
-            console.log("entro en object")
-            // La respuesta es un objeto JSON
-              console.log(tableBody)
-
 
 
             if (tableBody != null) {
-              console.log(tableBody)
-              const info = response.data;
+              const tableParent = tableBody.parentNode; // Obtener el padre de la tabla
+              console.log("entro en if")
+              // Eliminar temporalmente la tabla original
+              tableBody.remove();
+
+              // Crear una nueva tabla vacía
+              const newTable = document.createElement('tbody');
+              newTable.id = 'table-body';
+              newTable.className = tableBody.className;
+
               if (info.length > 0) {
-                // Obtener los campos presentes en los objetos de la respuesta
                 const fields = Object.keys(info[0]);
-                // Crear las columnas de la tabla
                 const headerRow = document.createElement('tr');
                 fields.forEach(field => {
                   const headerCell = document.createElement('th');
                   headerCell.textContent = field;
                   headerRow.appendChild(headerCell);
                 });
-                tableBody.appendChild(headerRow);
-                // Iterar sobre los objetos del array y agregar filas a la tabla
+                newTable.appendChild(headerRow);
                 info.forEach((item: any) => {
                   const row = document.createElement('tr');
                   fields.forEach(field => {
@@ -77,80 +71,24 @@ export class PaginaComponent {
                     }
                     row.appendChild(cell);
                   });
-                  tableBody.appendChild(row);
+                  newTable.appendChild(row);
                 });
               }
+
+              // Reinsertar la nueva tabla en el lugar de la tabla original
+              tableParent?.appendChild(newTable);
             }
           } else if (typeof response.data === 'string') {
-
             if (resultadoElement != null) {
               resultadoElement.innerHTML = response.data;
-
             }
           }
         } catch (error) {
           console.error(error);
-          alert("Debes ingresar una sentencia");
+          alert("No hay comunicación con el servidor");
         }
       });
     }
   }
-
-
-
-  async funcionTabla2() {
-
-    const inputText = document.getElementById('input-text') as HTMLInputElement;
-    const sendButton = document.getElementById('send-button');
-    const tableBody = document.getElementById('table-body');
-    const resultadoElement = document.getElementById('resultado');
-
-
-    if (sendButton != null ) {
-      sendButton.addEventListener('click', async () => {
-        const sentencia = inputText.value;
-        try {
-          const response = await axios.post('http://localhost:4043/custom-table', {sentencia});
-
-
-          if (typeof response.data === 'object') {
-            console.log("entro en object")
-            // La respuesta es un objeto JSON
-            console.log(response.data)
-
-          this.objeto = response.data;
-
-
-            for (const objetoKey in this.objeto) {
-              if (this.objeto.hasOwnProperty(objetoKey)) {
-                console.log(`Iterando sobre el objeto ${objetoKey}:`);
-                this.objetos = this.objeto[objetoKey];
-                for (const clave in this.objetos) {
-                  if (this.objetos.hasOwnProperty(clave)) {
-                    const valor = this.objetos[clave];
-                    console.log(`${clave}: ${valor}`);
-                  }
-                }
-              }
-            }
-
-
-          } else if (typeof response.data === 'string') {
-
-            if (resultadoElement != null) {
-              resultadoElement.innerHTML = response.data;
-
-            }
-          }
-        } catch (error) {
-          console.error(error);
-          alert("Debes ingresar una sentencia");
-        }
-      });
-    }
-  }
-
-
-
 
 }
