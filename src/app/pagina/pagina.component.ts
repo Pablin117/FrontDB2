@@ -14,13 +14,15 @@ export class PaginaComponent {
   public objeto: any;
   public objetos: any;
   public itemsArray: any;
+  prueba:any;
+  tabla:string[];
 
   constructor(private http: HttpClient) {
-
+this.tabla = []
   }
 
   ngOnInit(): void {
-    this.funcionTabla()
+    this.funcionTabla2()
   }
 
   async  funcionTabla() {
@@ -90,5 +92,82 @@ export class PaginaComponent {
       });
     }
   }
+
+
+  async funcionTabla2() {
+
+    const inputText = document.getElementById('input-text') as HTMLInputElement;
+    const sendButton = document.getElementById('send-button');
+    const tableBody = document.getElementById('table-body');
+    const resultadoElement = document.getElementById('resultado');
+
+
+    if (sendButton != null ) {
+      sendButton.addEventListener('click', async () => {
+        const sentencia = inputText.value;
+        try {
+          const response = await axios.post('http://localhost:4043/custom-table', {sentencia});
+
+
+          if (typeof response.data === 'object') {
+            console.log("entro en object")
+            // La respuesta es un objeto JSON
+
+            //NUEVO
+            this.prueba = response.data
+            this.prueba = JSON.stringify(response.data)
+            this.prueba = JSON.parse(this.prueba)
+
+            console.log(this.prueba)
+
+
+            for(let obj of this.prueba){
+              var seg = obj
+
+              for(var key in seg){
+                console.log(key)
+                this.tabla.push(key)
+              }
+              break
+            }
+
+            console.log(this.tabla)
+            //NUEVOO
+
+
+            /*
+                        for (const objetoKey in this.objeto) {
+                          if (this.objeto.hasOwnProperty(objetoKey)) {
+                            console.log(`Iterando sobre el objeto ${objetoKey}:`);
+                            this.objetos = this.objeto[objetoKey];
+                            for (const clave in this.objetos) {
+                              if (this.objetos.hasOwnProperty(clave)) {
+                                const valor = this.objetos[clave];
+                                console.log(`${clave}: ${valor}`);
+                              }
+                            }
+                          }
+                        }
+
+
+             */
+
+
+          } else if (typeof response.data === 'string') {
+
+            if (resultadoElement != null) {
+              resultadoElement.innerHTML = response.data;
+
+            }
+          }
+        } catch (error) {
+          console.error(error);
+          alert("Debes ingresar una sentencia");
+        }
+      });
+    }
+  }
+
+
 
 }
