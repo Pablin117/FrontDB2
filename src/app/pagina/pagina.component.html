@@ -37,13 +37,16 @@
     </thead>
 
     <tbody>
-    <tr *ngFor="let obj of prueba">
-      <td *ngFor="let key of tabla">
-        {{obj.valueOf(key)}}
-      </td>
+    <tr *ngFor="let encabezado of encabezados">
+      {{encabezado.key}}
     </tr>
+    <br>
+    <ul >
+     {{this.tabla}}
+    </ul>
     </tbody>
   </table>
+
 
 </div>
 </body>
