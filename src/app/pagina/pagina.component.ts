@@ -8,18 +8,9 @@ import axios from 'axios';
   styleUrls: ['./pagina.component.css']
 })
 export class PaginaComponent {
-  title = 'DB2';
-  public columns: string[] = [];
-  public rows: any;
-  public objeto: any;
-  public objetos: any;
   public itemsArray: any;
-  encabezados: any;
-  body: any;
-  tabla: string[];
 
   constructor(private http: HttpClient) {
-    this.tabla = []
   }
 
   ngOnInit(): void {
