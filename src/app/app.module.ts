@@ -20,6 +20,7 @@ import { InicioComponent } from './inicio/inicio.component';
         HttpClientModule,
         RouterModule,
         AppRoutingModule
+
     ],
   providers: [],
   bootstrap: [AppComponent]
