@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<body class="m-0 vh-100 row justify-content-center align-items-center">
+
+<div class="fondo">
+<h1>Ingresa tus datos para la conexión</h1>
+
+<form class="login-form"  (ngSubmit)="formulariologin()" id="loginForm">
+  <div>
+    <label for="usuario">Nombre de usuario:</label>
+    <input type="text" id="usuario" placeholder="Usuario" [(ngModel)]="user.usuario" [ngModelOptions]="{standalone: true}" required>
+  </div>
+
+  <div>
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" id="contrasena"  placeholder="Contraseña"[(ngModel)]="user.contrasena" [ngModelOptions]="{standalone: true}" required>
+  </div>
+
+  <div>
+    <label for="nombreBD">Nombre base de datos:</label>
+    <input type="text" id="nombreBD" placeholder="Nombre de la base de datos" [(ngModel)]="user.nombreBD" [ngModelOptions]="{standalone: true}" required>
+  </div>
+
+  <button type="submit">Ingresar</button>
+</form>
+</div>
+</body>
+</html>
