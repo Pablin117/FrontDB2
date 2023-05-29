@@ -22,6 +22,11 @@ body{
   right: 10px;
   padding: 10px 20px;
   font-size: 20px;
+
+}
+
+#abrirModal:hover {
+  background-color: #3e8e41;
 }
 
 .principal{
@@ -116,8 +121,7 @@ button:hover {
   background-color: white;
   display: flex;
   justify-content: left;
-  text-align: left;;
-  align-items: center;
+  text-align: left;
   flex-direction: column;
   gap: 5px; /* Sirve para dar espacio entre cada fila*/
   border-collapse: separate;
