@@ -40,7 +40,7 @@ export class PaginaComponent {
           this.usuario = localStorage.getItem("usuario")
           this.password = localStorage.getItem("contrasena")
           this.esquema = localStorage.getItem("esquema")
-          const response = await axios.post('http://localhost:4043/connect-db', {
+          const response = await axios.post('http://localhost:4043/execute-db', {
             url: this.esquema,
             username: this.usuario,
             password: this.password,
