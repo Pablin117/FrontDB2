@@ -9,10 +9,11 @@ body{
   align-items: center;
   overflow: hidden;
   font-family: 'poppins',sans-serif;
+  color: #1b325f;
 }
 
 #abrirModal {
-  background-color: #4CAF50;
+  background-color: #f26c4f;
   color: white;
   font-weight: bold;
   border: none;
@@ -26,7 +27,7 @@ body{
 }
 
 #abrirModal:hover {
-  background-color: #3e8e41;
+  background-color: #1b325f;
 }
 
 .principal{
@@ -62,14 +63,14 @@ textarea {
 
 
 button {
-  background-color: #4CAF50;
+  background-color: #f26c4f;
   color: white;
   font-weight: bold;
   border: none;
   cursor: pointer;
 }
 button:hover {
-  background-color: #3e8e41;
+  background-color: #1b325f;
 }
 
 
@@ -127,11 +128,8 @@ button:hover {
   border-spacing: 15px 10px;
 }
 
-.nameUser {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+
+
 
 
 
