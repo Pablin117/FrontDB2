@@ -10,7 +10,8 @@
       <h1 style="text-align: center">Gestor de Base de datos en linea</h1>
     </div>
     <div  class="principal">
-      <input placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1" type="text" id="input-text">
+     <!-- <input placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1" type="text" id="input-text">-->
+      <textarea placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1" type="text" id="input-text"> </textarea>
       <br>
       <button id="send-button"><H1>Ejecutar</H1></button>
     </div>
@@ -21,7 +22,7 @@
           </tbody>
         </table>
       </div>
-      <table class="table table-bordered">
+      <table  class="caja">
         <tr *ngForOf="let item of itemsArray">
           <td>
             {{ item.clave }}: {{ item.valor }}
@@ -40,7 +41,7 @@
     <br>
     <input placeholder="Constraseña" class="input1"  type="password" id="password-text">
     <br>
-    <input placeholder="Esquema" class="input1" type="text" id="esquema-text">
+    <input placeholder="Base de datos" class="input1" type="text" id="esquema-text">
     <br>
     <button id="send-buttonU"><H1>Conectar</H1></button>
   </div>

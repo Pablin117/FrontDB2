@@ -1,6 +1,4 @@
 
-
-
 body{
 
   background-size: cover;
@@ -12,7 +10,6 @@ body{
   overflow: hidden;
   font-family: 'poppins',sans-serif;
 }
-
 
 #abrirModal {
   background-color: #4CAF50;
@@ -26,10 +23,6 @@ body{
   padding: 10px 20px;
   font-size: 20px;
 }
-
-
-
-
 
 .principal{
   text-align: center;
@@ -73,9 +66,6 @@ button:hover {
 }
 
 
-
-
-
 .modal {
   display: none;
   position: fixed;
@@ -114,9 +104,15 @@ button:hover {
   text-decoration: none;
 }
 
-
-
-
+.caja {
+  color: darkgray;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 50px;
+  margin-top: 20px;
+  font-size: 25px;
+  background-color: white;
+}
 .nameUser {
   position: absolute;
   top: 0;
