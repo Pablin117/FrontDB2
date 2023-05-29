@@ -10,14 +10,15 @@ import axios from 'axios';
 export class PaginaComponent {
   public itemsArray: any;
 
+  usertmp: any;
 
 
   constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
+    this.funcionModal()
     this.funcionTabla()
-    this.funcionModal1()
     localStorage.clear()
 
   }
@@ -27,10 +28,11 @@ export class PaginaComponent {
     const sendButton = document.getElementById('send-button');
     const resultadoElement = document.getElementById('resultado');
 
-    console.log(inputText)
+
     if (sendButton != null) {
       sendButton.addEventListener('click', async () => {
         const sentencia = inputText.value;
+        console.log(sentencia)
         try {
           const response = await axios.post('http://localhost:4043/connect-db', {
             url: 'dbOS2',
@@ -87,61 +89,20 @@ export class PaginaComponent {
     const closeBtn = document.getElementsByClassName('close')[0] as HTMLElement;
     const modal = document.getElementById('Modal');
 
-    if (btn) {
-      btn.onclick = function () {
-        if (modal) {
-          modal.style.display = 'block';
+    const userInput = document.getElementById('user-text') as HTMLInputElement;
+    const passwordInput = document.getElementById('password-text') as HTMLInputElement;
+    const esquemaInput = document.getElementById('esquema-text') as HTMLInputElement;
 
-          const sendButton = document.getElementById('send-buttonU');
-          const UserInput = document.getElementById('user-text') as HTMLInputElement;
-          const passwordInput = document.getElementById('password-text') as HTMLInputElement;
-          const esquemaInput = document.getElementById('esquema-text') as HTMLInputElement;
+    const user = userInput.value;
+    const password = passwordInput.value;
+    const esquema = esquemaInput.value;
 
+    console.log(user)
+    console.log(password)
+    console.log(esquema)
+    this.usertmp = user
 
-          const user = UserInput.value;
-          const password = passwordInput.value;
-          const esquema = esquemaInput.value;
-
-
-
-          if (sendButton != null) {
-            sendButton.addEventListener('click', async () => {
-              try {
-                const response = await axios.post('http://localhost:4043/check-db', {
-                  url: 'dbOS2', username: 'root', password: 'cristian13'
-                });
-                const info = response.data;
-                const message: string = info.message;
-                alert(message)
-                modal.style.display = 'none';
-              } catch (error) {
-                console.error(error);
-                alert("No hay comunicación con el servidor");
-              }
-            });
-          }
-        }
-      };
-    }
-    if (closeBtn) {
-      closeBtn.onclick = function () {
-        if (modal) {
-          modal.style.display = 'none';
-        }
-      };
-    }
-
-    window.onclick = function (event) {
-      if (modal && event.target === modal) {
-        modal.style.display = 'none';
-      }
-    }
-  }
-
-  async  funcionModal1() {
-    const btn = document.getElementById('abrirModal');
-    const closeBtn = document.getElementsByClassName('close')[0] as HTMLElement;
-    const modal = document.getElementById('Modal');
+    console.log(this.usertmp)
 
     if (btn) {
       btn.onclick = function () {
@@ -152,33 +113,50 @@ export class PaginaComponent {
 
           if (sendButton) {
             sendButton.addEventListener('click', async () => {
-              const UserInput = document.getElementById('user-text') as HTMLInputElement;
-              const passwordInput = document.getElementById('password-text') as HTMLInputElement;
-              const esquemaInput = document.getElementById('esquema-text') as HTMLInputElement;
-
-              const user = UserInput.value;
-              const password = passwordInput.value;
-              const esquema = esquemaInput.value;
 
               try {
+
                 const response = await axios.post('http://localhost:4043/check-db', {
-                  url: 'dbOS2', username: user, password: password
+                  url: esquema, username: user, password: password
                 });
                 const info = response.data;
                 const message: string = info.message;
-                alert(message)
-                modal.style.display = 'none';
+                const error: string = info.error;
+                console.log(info)
+                console.log(message)
+                console.log(error)
+
+                if (message != null) {
+
+                  alert(message)
+                  modal.style.display = 'none';
+                } else {
+
+                  alert(error)
+                  modal.style.display = 'none';
+                }
+
+
               } catch (error) {
                 console.error(error);
                 alert("No hay comunicación con el servidor");
               }
             });
           }
+
+          if (closeBtn) {
+            closeBtn.onclick = function () {
+              if (modal) {
+                modal.style.display = 'none'
+              }
+            }
+          }
+
         }
+
       };
     }
 
-    // Resto del código...
   }
 
 

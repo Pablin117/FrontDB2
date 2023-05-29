@@ -3,50 +3,54 @@
 <head>
   <title>DB2</title>
 </head>
+
 <body>
-<div class="form-body">
-  <div class="container">
-    <h1 style="text-align: center">Gestor de Base de datos en linea</h1>
-  </div>
-  <div class="principal">
-    <input placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1"
-           type="text" id="input-text">
-    <br>
-    <button id="send-button"><H1>Ejecutar</H1></button>
-  </div>
-  <div class="container2">
-    <div class="caja" id="resultado">
+  <div class="form-body">
+    <div class="container">
+      <h1 style="text-align: center">Gestor de Base de datos en linea</h1>
+    </div>
+    <div class="principal">
+      <input placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1" type="text" id="input-text">
+      <br>
+      <button id="send-button"><H1>Ejecutar</H1></button>
+    </div>
+    <div class="container2">
+      <div class="caja" id="resultado">
+        <table>
+          <tbody id="table-body">
+          </tbody>
+        </table>
+      </div>
       <table>
-        <tbody id="table-body">
-        </tbody>
+        <tr *ngFor="let item of itemsArray">
+          <td>
+            {{ item.clave }}: {{ item.valor }}
+          </td>
+        </tr>
       </table>
     </div>
-    <table>
-      <tr *ngFor="let item of itemsArray">
-        <td>
-          {{ item.clave }}: {{ item.valor }}
-        </td>
-      </tr>
-    </table>
   </div>
-</div>
-
 
 <button id="abrirModal">Iniciar sesión</button>
 <div id="Modal" class="modal">
-  <div class="modal-content">
+  <div class="modal-content" >
     <span class="close">&times;</span>
     <h2>Iniciar sesión</h2>
-
     <input placeholder="Usuario " class="input1" type="text" id="user-text">
     <br>
-    <input placeholder="Constraseña" class="input1" type="text" id="password-text">
+    <label >Contraseña:</label>
+    <input placeholder="Constraseña" class="input1"  type="password" id="password-text">
+    <br>
+    <input placeholder="Esquema" class="input1" type="text" id="esquema-text">
     <br>
     <button id="send-buttonU"><H1>Conectar</H1></button>
   </div>
 </div>
 
 
+<footer>
+
+</footer>
 
 </body>
 </html>
