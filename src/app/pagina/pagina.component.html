@@ -11,18 +11,18 @@
     </div>
     <div  class="principal">
      <!-- <input placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1" type="text" id="input-text">-->
-      <textarea placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1" type="text" id="input-text"> </textarea>
+      <textarea placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1" type="text" id="input-text" rows="1" oninput="autoResize()"> </textarea>
       <br>
       <button id="send-button"><H1>Ejecutar</H1></button>
     </div>
     <div class="container2">
-      <div class="table" id="resultado" >
+      <div class="caja" id="resultado" >
         <table>
           <tbody id="table-body">
           </tbody>
         </table>
       </div>
-      <table  class="caja">
+      <table  class="table">
         <tr *ngForOf="let item of itemsArray">
           <td>
             {{ item.clave }}: {{ item.valor }}
@@ -50,7 +50,7 @@
 
 <footer>
   <div class="nameUser">
-    <h1 style="text-align: left">Usuario {{this.usuario}}</h1>
+    <h1 style="text-align: left">Usuario: {{this.usuario}}</h1>
   </div>
 </footer>
 

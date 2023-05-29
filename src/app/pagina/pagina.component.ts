@@ -90,6 +90,8 @@ export class PaginaComponent {
   }
 
 
+
+
   async funcionModal() {
     const btn = document.getElementById('abrirModal');
     const closeBtn = document.getElementsByClassName('close')[0] as HTMLElement;
@@ -158,6 +160,9 @@ export class PaginaComponent {
       };
     }
   }
+
+
+
 
 
 }
