@@ -2,21 +2,34 @@
 
 
 body{
-  background: url("https://www.todofondos.net/wp-content/uploads/mas-de-69-fondos-de-pantalla-4k-abstractos.-imagen-4k-ultra-hd-abstractos-scaled.jpg");
+
   background-size: cover;
   background-position: center;
-  height: 100vh;
   width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0;
-  border: none;
   overflow: hidden;
   font-family: 'poppins',sans-serif;
-  margin-left: 0px;
-  margin-top: -20px;
 }
+
+
+#abrirModal {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  font-size: 20px;
+}
+
+
+
+
 
 .principal{
   text-align: center;
@@ -58,16 +71,10 @@ button {
 button:hover {
   background-color: #3e8e41;
 }
-.caja {
-  color: darkgray;
-  border: 10px;
-  border-radius: 10px;
-  padding: 100px;
-  margin-top: auto;
-  font-size: 25px;
-  background-color: white;
-  align-items: center;
-}
+
+
+
+
 
 .modal {
   display: none;
@@ -108,10 +115,13 @@ button:hover {
 }
 
 
-#abrirModal {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  padding: 10px 20px;
+
+
+.nameUser {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
+
+
+
