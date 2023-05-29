@@ -89,32 +89,28 @@ export class PaginaComponent {
     const closeBtn = document.getElementsByClassName('close')[0] as HTMLElement;
     const modal = document.getElementById('Modal');
 
-    const userInput = document.getElementById('user-text') as HTMLInputElement;
-    const passwordInput = document.getElementById('password-text') as HTMLInputElement;
-    const esquemaInput = document.getElementById('esquema-text') as HTMLInputElement;
-
-    const user = userInput.value;
-    const password = passwordInput.value;
-    const esquema = esquemaInput.value;
-
-    console.log(user)
-    console.log(password)
-    console.log(esquema)
-    this.usertmp = user
-
-    console.log(this.usertmp)
-
     if (btn) {
       btn.onclick = function () {
         if (modal) {
           modal.style.display = 'block';
 
           const sendButton = document.getElementById('send-buttonU');
+          const userInput = document.getElementById('user-text') as HTMLInputElement;
+          const passwordInput = document.getElementById('password-text') as HTMLInputElement;
+          const esquemaInput = document.getElementById('esquema-text') as HTMLInputElement;
 
           if (sendButton) {
             sendButton.addEventListener('click', async () => {
 
               try {
+
+                const user = userInput.value;
+                const password = passwordInput.value;
+                const esquema = esquemaInput.value;
+
+                console.log(user)
+                console.log(password)
+                console.log(esquema)
 
                 const response = await axios.post('http://localhost:4043/check-db', {
                   url: esquema, username: user, password: password
@@ -136,7 +132,6 @@ export class PaginaComponent {
                   modal.style.display = 'none';
                 }
 
-
               } catch (error) {
                 console.error(error);
                 alert("No hay comunicación con el servidor");
@@ -151,13 +146,11 @@ export class PaginaComponent {
               }
             }
           }
-
         }
-
       };
     }
-
   }
+
 
 
 }
