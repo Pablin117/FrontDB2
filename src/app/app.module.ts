@@ -6,13 +6,13 @@ import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "./app-routing.module";
-import { InicioComponent } from './inicio/inicio.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    PaginaComponent,
-    InicioComponent
+    PaginaComponent
+
   ],
     imports: [
         BrowserModule,
