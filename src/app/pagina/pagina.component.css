@@ -59,13 +59,14 @@ button:hover {
   background-color: #3e8e41;
 }
 .caja {
-  color: #BCBDBC;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 50px;
+  color: darkgray;
+  border: 10px;
+  border-radius: 10px;
+  padding: 100px;
   margin-top: auto;
-  font-size: 18px;
+  font-size: 25px;
   background-color: white;
+  align-items: center;
 }
 
 .modal {
