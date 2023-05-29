@@ -95,7 +95,6 @@ export class PaginaComponent {
     const closeBtn = document.getElementsByClassName('close')[0] as HTMLElement;
     const modal = document.getElementById('Modal');
 
-    this.usuario = 'hola'
     if (btn) {
       btn.onclick = function () {
         if (modal) {
