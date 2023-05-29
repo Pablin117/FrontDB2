@@ -10,7 +10,9 @@ import axios from 'axios';
 export class PaginaComponent {
   public itemsArray: any;
 
-  usertmp: any;
+  usuario: any;
+  password: any;
+  esquema: any;
 
 
   constructor(private http: HttpClient) {
@@ -34,10 +36,14 @@ export class PaginaComponent {
         const sentencia = inputText.value;
         console.log(sentencia)
         try {
+
+          this.usuario = localStorage.getItem("usuario")
+          this.password = localStorage.getItem("contrasena")
+          this.esquema = localStorage.getItem("esquema")
           const response = await axios.post('http://localhost:4043/connect-db', {
-            url: 'dbOS2',
-            username: 'root',
-            password: 'cristian13',
+            url: this.esquema,
+            username: this.usuario,
+            password: this.password,
             sentencia: sentencia
           });
           const info = response.data;
@@ -89,6 +95,7 @@ export class PaginaComponent {
     const closeBtn = document.getElementsByClassName('close')[0] as HTMLElement;
     const modal = document.getElementById('Modal');
 
+    this.usuario = 'hola'
     if (btn) {
       btn.onclick = function () {
         if (modal) {
@@ -123,7 +130,9 @@ export class PaginaComponent {
                 console.log(error)
 
                 if (message != null) {
-
+                  localStorage.setItem("usuario", user);
+                  localStorage.setItem("contrasena", password);
+                  localStorage.setItem("esquema", esquema);
                   alert(message)
                   modal.style.display = 'none';
                 } else {
@@ -150,7 +159,6 @@ export class PaginaComponent {
       };
     }
   }
-
 
 
 }
