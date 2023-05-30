@@ -9,7 +9,7 @@ import axios from 'axios';
 export class LoginComponent {
   //variables
   connection:any = {}
-  alert:any
+  alert: string ='';
   bl_alert:boolean = false
 
   ngOnInit(): void {
@@ -31,16 +31,16 @@ export class LoginComponent {
       const info = response.data;
       const message: string = info.message;
       const error: string = info.error;
-      console.log(info)
-      console.log(message)
-      console.log(error)
+
 
       if (message != null) {
         localStorage.setItem("connection", JSON.stringify(this.connection))
         location.href="/home"
       } else {
-        this.bl_alert = true
+
         this.alert = error
+        console.log(this.alert)
+        this.bl_alert = true
       }
 
     }catch (error){

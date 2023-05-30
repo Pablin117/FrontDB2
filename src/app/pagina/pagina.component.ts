@@ -41,11 +41,10 @@ export class PaginaComponent {
       this.connection.db = localStorage.getItem("db")
 
     }
-
     //validación para sacar al usuario si no se ha logeado
-    // if(this.connection == null || this.connection.user == null || this.connection.user == ""){
-    //   location.href=""
-    // }
+     if(this.connection == null || this.connection.user == null || this.connection.user == ""){
+       location.href=""
+     }
   }
 
   async funcionTabla() {
@@ -54,9 +53,6 @@ export class PaginaComponent {
     const sendButton = document.getElementById('send-button');
     const resultadoElement = document.getElementById('resultado');
 
-    if(this.usuario!=null){
-      this.valid_user=true
-    }
 
     if (sendButton != null) {
       sendButton.addEventListener('click', async () => {
@@ -70,6 +66,7 @@ export class PaginaComponent {
           this.usuario = this.connection.user
           this.password = this.connection.password
           this.esquema = this.connection.db
+
           const response = await axios.post('http://localhost:4043/execute-db', {
             url: this.esquema,
             username: this.usuario,
@@ -161,13 +158,9 @@ export class PaginaComponent {
                   localStorage.setItem("user", user);
                   localStorage.setItem("password", password);
                   localStorage.setItem("db", esquema);
-
                   alert(message)
-
                   modal.style.display = 'none';
                 } else {
-
-                  alert(error)
                   modal.style.display = 'none';
                 }
 
