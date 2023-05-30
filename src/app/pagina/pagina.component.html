@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<div class="nameUser">
+<div class="nameUser" >
   <h1 style="text-align: left">Usuario: {{this.usuario}}</h1>
 </div>
   <div class="form-body">
@@ -14,8 +14,7 @@
       <h1 style="text-align: center">Gestor de Base de datos en linea</h1>
     </div>
     <div  class="principal">
-     <!-- <input placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1" type="text" id="input-text">-->
-      <textarea placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1" type="text" id="input-text" rows="1" oninput="autoResize()"> </textarea>
+     <textarea placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1" type="text" id="input-text" rows="1" oninput="autoResize()"> </textarea>
       <br>
       <button id="send-button"><H1>Ejecutar</H1></button>
     </div>
@@ -27,7 +26,7 @@
         </table>
       </div>
       <table  class="table">
-        <tr *ngForOf="let item of itemsArray">
+        <tr *ngFor="let item of itemsArray">
           <td>
             {{ item.clave }}: {{ item.valor }}
           </td>
@@ -52,11 +51,7 @@
 </div>
 
 
-<footer>
-  <div id="ccard_img">
-    <img src="" />
-  </div>
-</footer>
+
 
 </body>
 </html>

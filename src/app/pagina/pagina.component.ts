@@ -13,9 +13,11 @@ export class PaginaComponent {
   usuario: any;
   password: any;
   esquema: any;
+  valid_user: boolean = false;
 
 
   constructor(private http: HttpClient) {
+    this.valid_user = false
   }
 
   ngOnInit(): void {
@@ -30,6 +32,9 @@ export class PaginaComponent {
     const sendButton = document.getElementById('send-button');
     const resultadoElement = document.getElementById('resultado');
 
+    if(this.usuario!=null){
+      this.valid_user=true
+    }
 
     if (sendButton != null) {
       sendButton.addEventListener('click', async () => {
@@ -134,6 +139,7 @@ export class PaginaComponent {
                   localStorage.setItem("usuario", user);
                   localStorage.setItem("contrasena", password);
                   localStorage.setItem("esquema", esquema);
+
                   alert(message)
                   modal.style.display = 'none';
                 } else {
