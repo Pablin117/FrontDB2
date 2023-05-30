@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="login.component.css">
+<div class="col-3 center">
+  <h1>UDS Web</h1>
+  <br>
+  <img src="https://cdn-icons-png.flaticon.com/512/1420/1420398.png"
+  width="200px">
+  <br><br>
+  <form class="login-form" (ngSubmit)="connect()" id="loginForm">
+    <div class="col-auto">
+      <input type="text" class="form-control" aria-describedby="passwordHelpInline" placeholder="Usuario"
+             [(ngModel)]="connection.user" [ngModelOptions]="{standalone: true}" required>
+    </div>
+    <br>
+    <div class="col-auto">
+      <input type="password" class="form-control" aria-describedby="passwordHelpInline" placeholder="Contraseña"
+             [(ngModel)]="connection.password" [ngModelOptions]="{standalone: true}" required>
+    </div>
+    <br>
+    <div class="col-auto">
+      <input type="text" class="form-control" aria-describedby="passwordHelpInline" placeholder="Base de datos"
+             [(ngModel)]="connection.db" [ngModelOptions]="{standalone: true}" required>
+    </div>
+    <br>
+    <button type="submit" class="btn form-control">Conectar</button>
+  </form>
+  <br>
+  <div class="alert alert-danger" role="alert" *ngIf="bl_alert">
+    <p [(ngModel)]="alert"></p>
+  </div>
+</div>
+

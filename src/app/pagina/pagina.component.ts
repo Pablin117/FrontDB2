@@ -10,6 +10,8 @@ import axios from 'axios';
 export class PaginaComponent {
   public itemsArray: any;
 
+  init:boolean = false
+  connection:any = {}
   usuario: any;
   password: any;
   esquema: any;
@@ -21,13 +23,33 @@ export class PaginaComponent {
   }
 
   ngOnInit(): void {
+    this.validation()
     this.funcionModal()
     this.funcionTabla()
-    localStorage.clear()
 
   }
 
+  validation(){
+    //Seteo de variables de conexión para cada sentencia
+
+    this.connection.user = localStorage.getItem("user")
+    if(this.connection.user == null || this.connection.user == ""){
+      this.connection = localStorage.getItem("connection")
+      this.connection = JSON.parse(this.connection)
+    }else{
+      this.connection.password = localStorage.getItem("password")
+      this.connection.db = localStorage.getItem("db")
+
+    }
+
+    //validación para sacar al usuario si no se ha logeado
+    // if(this.connection == null || this.connection.user == null || this.connection.user == ""){
+    //   location.href=""
+    // }
+  }
+
   async funcionTabla() {
+
     const inputText = document.getElementById('input-text') as HTMLInputElement;
     const sendButton = document.getElementById('send-button');
     const resultadoElement = document.getElementById('resultado');
@@ -38,13 +60,16 @@ export class PaginaComponent {
 
     if (sendButton != null) {
       sendButton.addEventListener('click', async () => {
+        this.validation()
         const sentencia = inputText.value;
         console.log(sentencia)
+        this.init = true
         try {
 
-          this.usuario = localStorage.getItem("usuario")
-          this.password = localStorage.getItem("contrasena")
-          this.esquema = localStorage.getItem("esquema")
+
+          this.usuario = this.connection.user
+          this.password = this.connection.password
+          this.esquema = this.connection.db
           const response = await axios.post('http://localhost:4043/execute-db', {
             url: this.esquema,
             username: this.usuario,
@@ -52,6 +77,7 @@ export class PaginaComponent {
             sentencia: sentencia
           });
           const info = response.data;
+          console.log(info)
           if (typeof response.data === 'object') {
             if (resultadoElement != null) {
               resultadoElement.innerHTML = ''
@@ -94,9 +120,6 @@ export class PaginaComponent {
     }
   }
 
-
-
-
   async funcionModal() {
     const btn = document.getElementById('abrirModal');
     const closeBtn = document.getElementsByClassName('close')[0] as HTMLElement;
@@ -116,7 +139,6 @@ export class PaginaComponent {
             sendButton.addEventListener('click', async () => {
 
               try {
-
                 const user = userInput.value;
                 const password = passwordInput.value;
                 const esquema = esquemaInput.value;
@@ -136,11 +158,12 @@ export class PaginaComponent {
                 console.log(error)
 
                 if (message != null) {
-                  localStorage.setItem("usuario", user);
-                  localStorage.setItem("contrasena", password);
-                  localStorage.setItem("esquema", esquema);
+                  localStorage.setItem("user", user);
+                  localStorage.setItem("password", password);
+                  localStorage.setItem("db", esquema);
 
                   alert(message)
+
                   modal.style.display = 'none';
                 } else {
 
@@ -152,6 +175,7 @@ export class PaginaComponent {
                 console.error(error);
                 alert("No hay comunicación con el servidor");
               }
+
             });
           }
 
@@ -167,8 +191,9 @@ export class PaginaComponent {
     }
   }
 
-
-
-
+  cerrar(){
+    localStorage.clear()
+    location.href=""
+  }
 
 }

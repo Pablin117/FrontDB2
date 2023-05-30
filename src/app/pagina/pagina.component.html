@@ -1,25 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>DB2</title>
-
-</head>
-
 <body>
-<div class="nameUser" >
-  <h1 style="text-align: left">Usuario: {{this.usuario}}</h1>
-</div>
-  <div class="form-body">
-    <div class="container">
-      <h1 style="text-align: center">Gestor de Base de datos en linea</h1>
+  <header>
+    <div class="nameUser">
+      <h5 class="user">Conexión: <b>{{this.connection.user}}</b></h5>
     </div>
-    <div  class="principal">
-     <textarea placeholder="Escribe la sentencia que desees utilizar, ejemplo (Select * from table) " class="input1" type="text" id="input-text" rows="1" oninput="autoResize()"> </textarea>
+    <br>
+    <div class="container">
+      <h1 class="title"><b>UDS Web</b></h1>
+    </div>
+  </header>
+  <br>
+  <div class="form-body">
+    <div  class="principal center">
+     <textarea placeholder="Escribe la sentencia que desees utilizar, ejemplo
+     (Select * from table) " class="input1" type="text" id="input-text" rows="1"
+               oninput="autoResize()">select * from prueba</textarea>
       <br>
-      <button id="send-button"><H1>Ejecutar</H1></button>
+      <button id="send-button" class="btn-ejec">Ejecutar</button>
     </div>
     <div class="container2">
-      <div class="caja" id="resultado" >
+      <div class="caja" id="resultado">
         <table>
           <tbody id="table-body">
           </tbody>
@@ -35,23 +34,39 @@
     </div>
   </div>
 
-<button id="abrirModal">Iniciar sesión</button>
+<button id="abrirModal">Nueva Conexión</button>
+  <button id="cerrar" (onClick)="cerrar()">Cerrar Sesión</button>
 <div id="Modal" class="modal">
   <div class="modal-content" >
     <span class="close">&times;</span>
-    <h2>Iniciar sesión</h2>
-    <input placeholder="Usuario " class="input1" type="text" id="user-text">
     <br>
-    <input placeholder="Constraseña" class="input1"  type="password" id="password-text">
+    <h2>Nueva Conexión</h2>
+    <br>
+    <input placeholder="Usuario" class="input1" type="text" id="user-text">
+    <br>
+    <input placeholder="Contraseña" class="input1"  type="password" id="password-text">
     <br>
     <input placeholder="Base de datos" class="input1" type="text" id="esquema-text">
     <br>
-    <button id="send-buttonU"><H1>Conectar</H1></button>
+    <button id="send-buttonU">Conectar</button>
   </div>
 </div>
 
 
 
-
+<footer>
+  <h4>Integrantes</h4>
+  <br>
+  <div class="row">
+    <div class="col-7">
+      <ul>Cristian Alexander Cáceres Morales: 3190-20-894</ul>
+      <ul>Diego Neftalí Iboy Terrón: 3190-20-428</ul>
+    </div>
+    <div class="col-5">
+      <ul>Ricardo Antonio Chávez Taracena: 3190-20-858</ul>
+      <ul>Pablo Josué Rixtun Del Cid: 3190-20-1265</ul>
+    </div>
+  </div>
+</footer>
 </body>
-</html>
+
