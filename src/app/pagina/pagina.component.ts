@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import axios from 'axios';
 
+
 @Component({
   selector: 'app-pagina',
   templateUrl: './pagina.component.html',
@@ -148,19 +149,20 @@ export class PaginaComponent {
                   url: esquema, username: user, password: password
                 });
                 const info = response.data;
-                const message: string = info.message;
+                const message: string = info.Mensaje;
                 const error: string = info.error;
                 console.log(info)
-                console.log(message)
-                console.log(error)
+
 
                 if (message != null) {
                   localStorage.setItem("user", user);
                   localStorage.setItem("password", password);
                   localStorage.setItem("db", esquema);
                   alert(message)
+                  location.href="/home"
                   modal.style.display = 'none';
                 } else {
+                 alert(error)
                   modal.style.display = 'none';
                 }
 
@@ -184,7 +186,10 @@ export class PaginaComponent {
     }
   }
 
+
+
   cerrar(){
+
     localStorage.clear()
     location.href=""
   }

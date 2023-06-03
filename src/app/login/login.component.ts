@@ -29,15 +29,14 @@ export class LoginComponent {
       });
 
       const info = response.data;
-      const message: string = info.message;
+      const message: string = info.Mensaje;
       const error: string = info.error;
-
+      console.log(info)
 
       if (message != null) {
         localStorage.setItem("connection", JSON.stringify(this.connection))
         location.href="/home"
       } else {
-
         this.alert = error
         console.log(this.alert)
         this.bl_alert = true
